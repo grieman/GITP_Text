@@ -124,7 +124,7 @@ words_freq = [(word, sum_words[0, idx]) for word, idx in pipeline.named_steps.tr
 sorted(words_freq, key = lambda x: x[1], reverse=True)[0:10]'''
 
 
-from wordcloud import WordCloud,  ImageColorGenerator
+from wordcloud import WordCloud, ImageColorGenerator
 import matplotlib.pyplot as plt
 from PIL import Image
 from os import path
@@ -133,15 +133,15 @@ text = " ".join(to_corpus("[^A-z]").transform(text_data.Text.astype(str).tolist(
 #text = " ".join(to_corpus("[^A-z]").transform(text_data[text_data.Author == "Dragodar"].Text.astype(str).tolist()))
 wordcloud = WordCloud().generate(text)
 
-plt.imshow(wordcloud, interpolation='bilinear')
+'''plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis("off")
-plt.show()
+plt.show()'''
 
-mask = np.array(Image.open("Images/20-sided-die.png"))
+mask = np.array(Image.open("Images/Seamus.jpg"))
 image_colors = ImageColorGenerator(mask)
 #image_colors = ImageColorGenerator(mask)
-wordcloud = WordCloud(background_color="white", mask=mask,  max_words=10000, color_func=image_colors).generate(text)
+wordcloud = WordCloud(background_color="white", mask=mask, max_words=200000, color_func=image_colors, max_font_size=90).generate(text)
 plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis("off")
-plt.savefig('Outputs/out_die.png', format='png', dpi=1000)
+plt.savefig('Outputs/Seamus.png', format='png', dpi=2000)
 plt.show()
